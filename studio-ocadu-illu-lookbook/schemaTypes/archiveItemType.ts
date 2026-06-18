@@ -1,8 +1,8 @@
 import {defineField, defineType} from 'sanity'
 
-export const projectType = defineType({
-  name: 'project',
-  title: 'Project',
+export const archiveItemType = defineType({
+  name: 'archive_item',
+  title: 'Archive Item',
   type: 'document',
   fields: [
     defineField({
@@ -27,10 +27,10 @@ export const projectType = defineType({
   },
 }),
     defineField({
-  name: 'instructor',
-  title: 'Instructor',
+  name: 'profile',
+  title: 'profile',
   type: 'reference',
-  to: [{ type: 'instructor' }],
+  to: [{ type: 'profile' }],
 }),
     defineField({
       name: 'publishedAt',
@@ -88,8 +88,42 @@ defineField({
 }),
     defineField({
       name: 'body',
+      title: 'Description',
       type: 'array',
       of: [{type: 'block'}],
     }),
+    defineField({
+  name: 'externalLinks',
+  title: 'External Links',
+  type: 'array',
+  of: [
+    {
+      type: 'object',
+      fields: [
+        {
+          name: 'title',
+          title: 'Title',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: 'url',
+          title: 'URL',
+          type: 'url',
+          validation: (Rule) =>
+            Rule.required().uri({
+              scheme: ['http', 'https'],
+            }),
+        },
+      ],
+      preview: {
+        select: {
+          title: 'title',
+          subtitle: 'url',
+        },
+      },
+    },
+  ],
+})
   ],
 })

@@ -1,5 +1,5 @@
-import {projectType} from './projectType'
-import {instructorType} from './instructorType'
+import {archiveItemType} from './archiveItemType'
+import {profileType} from './profileType'
 
 
-export const schemaTypes = [projectType, instructorType]
+export const schemaTypes = [archiveItemType, profileType]
