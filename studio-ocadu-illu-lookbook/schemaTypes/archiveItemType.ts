@@ -7,6 +7,7 @@ export const archiveItemType = defineType({
   fields: [
     defineField({
       name: 'title',
+      title: 'Project Title',
       type: 'string',
       validation: (rule) => rule.required(),
     }),
@@ -28,7 +29,7 @@ export const archiveItemType = defineType({
 }),
     defineField({
   name: 'profile',
-  title: 'profile',
+  title: 'Illustrator Name',
   type: 'reference',
   to: [{ type: 'profile' }],
 }),
@@ -42,6 +43,7 @@ export const archiveItemType = defineType({
     defineField({
   name: 'lead_image',
   title: 'Lead Image',
+  description: 'This image will also be used a thumbnail ',
   type: 'image',
   options: {
     hotspot: true,
@@ -51,18 +53,20 @@ export const archiveItemType = defineType({
       name: 'caption',
       title: 'Caption',
       type: 'string',
+      description: '200 characters maximum.',
     }),
     defineField({
       name: 'alt',
       title: 'Alt Text',
       type: 'string',
-      validation: (rule) => rule.required(),
+      description: '200 characters maximum. For accessibility. More information here: https://accessibility.huit.harvard.edu/describe-content-images'
     }),
   ],
 }),
 defineField({
   name: 'additional_images',
   title: 'Additional Images',
+  description: 'JPG, PNG, or GIF. Minimum width: 2400 pixels. This system will store large files and will compress automatically. Files should be large enough for print output.',
   type: 'array',
   of: [
     {
@@ -88,10 +92,19 @@ defineField({
 }),
     defineField({
       name: 'body',
-      title: 'Description',
+      title: 'Project Description',
       type: 'array',
+      description: 'Maximum character count 5000',
       of: [{type: 'block'}],
     }),
+      defineField({
+  name: 'keywords',
+  title: 'Keywords',
+  type: 'array',
+  of: [{ type: 'string' }],
+  description: 'Add 3-5 relevant keywords to improve discoverability. Use lowercase and avoid special characters.',
+  validation: Rule => Rule.max(10).warning('Keep to 10 tags or fewer for best results')
+}),
     defineField({
   name: 'externalLinks',
   title: 'External Links',
