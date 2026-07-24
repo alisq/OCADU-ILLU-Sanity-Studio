@@ -105,6 +105,7 @@ defineField({
   description: 'Add 3-5 relevant keywords to improve discoverability. Use lowercase and avoid special characters.',
   validation: Rule => Rule.max(10).warning('Keep to 10 tags or fewer for best results')
 }),
+defineField({name: 'tags', title: 'Tags', type: 'tags'}),
     defineField({
   name: 'externalLinks',
   title: 'External Links',
