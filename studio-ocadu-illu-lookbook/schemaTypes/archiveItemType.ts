@@ -12,6 +12,13 @@ export const archiveItemType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+  name: 'frontPage',
+  title: 'Front page',
+  type: 'boolean',
+  description: 'Show this item on the front page',
+  initialValue: false,
+}),
+    defineField({
   name: 'slug',
   title: 'Slug',
   type: 'slug',

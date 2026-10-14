@@ -18,6 +18,14 @@ export const profileType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+  name: 'profile_image',
+  title: 'Profile Image',
+  type: 'image',
+  options: {
+    hotspot: true,
+  },
+}),
+    defineField({
   name: 'slug',
   title: 'Slug',
   type: 'slug',
